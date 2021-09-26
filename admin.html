@@ -1,12 +1,8 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
-    <button id="login" onclick="login()">Login</button>
     <meta charset="UTF-8">
     <title>ADMIN PAGE</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <body>
     <div class="inner" id="title">
@@ -14,7 +10,7 @@
     </div>
     <div class="inner">
         <div class="box">
-            <input type="text" id="username" placeholder="Username want to create" required>
+            <input type="text" id="u_cre" placeholder="Username want to create" required>
             <button id="create" onclick='create()'>Create</button>
         </div>
     </div>
@@ -22,8 +18,8 @@
     <div class="inner">
         <div class="box">
             <input type="hidden" id="_method" value="PATCH"/>
-            <input type="text" id="username1" placeholder="Username want to change" required><br>
-            <input type="text" id="username2" placeholder="Username want to set" required>
+            <input type="text" id="u_up1" placeholder="Username want to change" required><br>
+            <input type="text" id="u_up2" placeholder="Username want to set" required>
             <button id="update" onclick='update()'>Update</button>
         </div>
     </div>
@@ -31,39 +27,60 @@
     <div class="inner">
         <div class="box">
             <input type="hidden" id="_method" value="DELETE"/>
-            <input type="text" id="username" placeholder="Username want to delete" required>
+            <input type="text" id="u_del" placeholder="Username want to delete" required>
             <button id="delete" onclick='del()'>Delete</button>
         </div>
+        <button id="login" onclick="login()">Login</button>
     </div>
 </body>
 <script>
-    function request(URL, method, body){
-    fetch(URL, {
-        method: method,
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body)})
-        .then((data) => console.log(data));
-    }
-    function create(){
-        request('https://boj-ranking-tqomc.run.goorm.io/user/'+$('.user-create #username').val(), 'POST', {});
-    }
-    function update() {
-        request('https://boj-ranking-tqomc.run.goorm.io/user/'+$('.user-update #username1').val(), 'PATCH', {username2:$('.user-update #username2').val()});
-    }
-    function del() {
-        request('https://boj-ranking-tqomc.run.goorm.io/user/'+$('.user-delete #username').val(), 'DELETE', {})
+    window.onload = function(){
+        function query_to_json() {
+            var list_q = location.search.split('&');
+            var ret = {};
+            for (var query in list_q) {
+                query = list_q[query]
+                if (query[0] == '?')
+                    query = query.substr(1, query.length+1);
+                var data = query.split('=');
+                ret[data[0]]=data[1];
+            }
+            return ret;//JSON.stringify(ret)
+        }
         
+        function request(URL, method, body){
+        fetch(URL, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+                /*'credentials': 'include',*/},
+            body: JSON.stringify(body)});
+            
+        }
         
+        var b_create = document.getElementById('create');
+        var b_delete = document.getElementById('delete');
+        var b_update = document.getElementById('update');
+        var b_login = document.getElementById('login');
+        
+        b_create.onclick = function() {
+            request('http://15.164.232.180:5000/user/'+document.getElementById('u_cre').value, 'POST');
+        }
+        b_delete.onclick = function() {
+            request('http://15.164.232.180:5000/user/'+document.getElementById('u_del').value, 'DELETE');
+        }
+        b_update.onclick = function() {
+            request('http://15.164.232.180:5000/user/'+document.getElementById('u_up1').value, 'PATCH', {username2:document.getElementById('u_up2').value});
+        }
+        b_login.onclick = function() {
+            var qjson = query_to_json();
+            
+            if (qjson['code'])
+                request('http://15.164.232.180:5000/user/login', 'POST', qjson);
+            else
+                window.location.href = 'https://github.com/login/oauth/authorize?client_id=fb0b9cd9b0766772bdfc';
+        }
     }
-    function login() {
-        request('https://boj-ranking-tqomc.run.goorm.io/user/login', 'GET', {});
-    }
-    //$('#myMessage').val()
-        /*
-        .then((response) => response.json())
-        .then((data) => console.log(data));*/
 </script>
 <style>
     * { padding : 0;
