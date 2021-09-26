@@ -64,19 +64,19 @@
         var b_login = document.getElementById('login');
         
         b_create.onclick = function() {
-            request('http://15.164.232.180:5000/user/'+document.getElementById('u_cre').value, 'POST');
+            request('http://52.78.228.31:5000/user/'+document.getElementById('u_cre').value, 'POST');
         }
         b_delete.onclick = function() {
-            request('http://15.164.232.180:5000/user/'+document.getElementById('u_del').value, 'DELETE');
+            request('http://52.78.228.31:5000/user/'+document.getElementById('u_del').value, 'DELETE');
         }
         b_update.onclick = function() {
-            request('http://15.164.232.180:5000/user/'+document.getElementById('u_up1').value, 'PATCH', {username2:document.getElementById('u_up2').value});
+            request('http://52.78.228.31:5000/user/'+document.getElementById('u_up1').value, 'PATCH', {username2:document.getElementById('u_up2').value});
         }
         b_login.onclick = function() {
             var qjson = query_to_json();
             
             if (qjson['code'])
-                request('http://15.164.232.180:5000/user/login', 'POST', qjson);
+                request('http://52.78.228.31:5000/user/login', 'POST', qjson);
             else
                 window.location.href = 'https://github.com/login/oauth/authorize?client_id=fb0b9cd9b0766772bdfc';
         }
