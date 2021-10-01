@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta charset="UTF-8">
     <title>ADMIN PAGE</title>
 </head>
@@ -35,6 +34,8 @@
     </div>
 </body>
 <script>
+    var URL = 'https://alrigothm.shop';
+    //https://boj-ranking-tqomc.run.goorm.io
     window.onload = function(){
         function query_to_json() {
             var list_q = location.search.split('&');
@@ -65,19 +66,19 @@
         var b_login = document.getElementById('login');
         
         b_create.onclick = function() {
-            request('http://52.78.228.31:5000/user/'+document.getElementById('u_cre').value, 'POST');
+            request(URL+'/user/'+document.getElementById('u_cre').value, 'POST');
         }
         b_delete.onclick = function() {
-            request('http://52.78.228.31:5000/user/'+document.getElementById('u_del').value, 'DELETE');
+            request(URL+'/user/'+document.getElementById('u_del').value, 'DELETE');
         }
         b_update.onclick = function() {
-            request('http://52.78.228.31:5000/user/'+document.getElementById('u_up1').value, 'PATCH', {username2:document.getElementById('u_up2').value});
+            request(URL+'/user/'+document.getElementById('u_up1').value, 'PATCH', {username2:document.getElementById('u_up2').value});
         }
         b_login.onclick = function() {
             var qjson = query_to_json();
             
             if (qjson['code'])
-                request('http://52.78.228.31:5000/user/login', 'POST', qjson);
+                request(URL+'/user/login', 'POST', qjson);
             else
                 window.location.href = 'https://github.com/login/oauth/authorize?client_id=fb0b9cd9b0766772bdfc';
         }
