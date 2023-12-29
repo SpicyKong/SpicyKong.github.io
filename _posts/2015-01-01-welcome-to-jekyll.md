@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Welcome to Jekyll!
+permalink: /mypageurl/
 subtitle: A awesome static site generator.
 author: Jeffrey
 categories: jekyll
