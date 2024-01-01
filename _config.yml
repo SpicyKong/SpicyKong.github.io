@@ -191,7 +191,7 @@ header_pages:
 #   text_size: 350          # Words default size
 
 # Pagination setting
-paginate: 5
+paginate: 10
 
 # Photo previewer settings (PhotoSwipe 5)
 # the options please refer to: https://photoswipe.com/options/
