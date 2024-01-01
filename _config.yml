@@ -111,7 +111,7 @@ yat:
 # theme_color: snowwhite
 #
 # Custom color as below:
-# theme_color: "#882250"
+theme_color: "#217eff"
 
 # You can choose a brand color
 # Default brand colors as below:
@@ -122,7 +122,7 @@ yat:
 # brand_color: greenblue
 #
 # Custom color as below:
-brand_color: "#1a8e42"
+brand_color: "#217eff"
 
 # You can custom selection style
 # selection:
