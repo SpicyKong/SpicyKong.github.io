@@ -14,6 +14,7 @@
 
   <div class="wrapper">
     <div class="site-header-inner">
+      {%- assign default_paths = site.pages | where: "dir", "/" | map: "path" -%}
       {%- assign page_paths = site.header_pages -%}
 
       <span class="site-brand">
