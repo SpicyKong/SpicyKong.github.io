@@ -184,10 +184,9 @@ header_pages:
 
 # Excerpt settings
 excerpt:
-  enabled: "true"
   default_image: /assets/images/default-image.png  # Default image when the image style is not none
   image_style: left          # Image layout style (It's value could be none, left, right, top, z, z-reverse)
-  image_width: 18.2%      # Image default width
+  image_width: 0%      # Image default width
 #   image_height: 160px     # Image default height
 #   text_size: 350          # Words default size
 
