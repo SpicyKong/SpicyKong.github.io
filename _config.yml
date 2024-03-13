@@ -24,7 +24,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: SpicyKong's Blog
+title: TO HOME
 email: ssw30951@gmail.com
 author: SpicyKong
 
@@ -125,8 +125,8 @@ yat:
 brand_color: "#217eff"
 
 # You can custom selection style
-# selection:
-#   color: "#ff00ff"
+selection:
+  color: "#ffD400"
 #   background_color: "yellow"
 
 # Night/Dark mode
@@ -140,7 +140,7 @@ brand_color: "#217eff"
 # it will be always kept on every visit (i.e. no matter
 # the browser is closed or not)
 #
-night_mode: "on"
+night_mode: "off"
 
 # Code badge setting
 # You can enable or disable the code badge and so on
@@ -169,7 +169,7 @@ header_pages:
 # Banner default settings
 # These banner settings are for global banner default, but you can also
 # config it by the front matter for one specific post
-# banner:
+banner:
 #   video: null             # Video banner source
 #   loop: true              # Video loop
 #   volume: 0               # Video volume (100% is 1.0)
@@ -177,15 +177,15 @@ header_pages:
 #   image: null             # Image banner source
 #   opacity: 1.0            # Banner opacity (100% is 1.0)
 #   background: "rgba(0, 0, 0, 0.8)"  # Banner background (Could be a image)
-#   height: "640px"         # Banner default height
+#   height: "512px"         # Banner default height
 #   min_height: null        # Banner minimum height
 #   heading_style: null     # Custom heading style (e.g. "font-weight: bold; text-decoration: underline")
 #   subheading_style: null  # Custom subheading style (e.g. color: gold)
 
 # Excerpt settings
-# excerpt:
-#   default_image: /assets/images/default-image.jpeg  # Default image when the image style is not none
-#   image_style: z          # Image layout style (It's value could be none, left, right, top, z, z-reverse)
+excerpt:
+  default_image: /assets/images/default-image.png  # Default image when the image style is not none
+  image_style: left          # Image layout style (It's value could be none, left, right, top, z, z-reverse)
 #   image_width: 38.2%      # Image default width
 #   image_height: 160px     # Image default height
 #   text_size: 350          # Words default size
