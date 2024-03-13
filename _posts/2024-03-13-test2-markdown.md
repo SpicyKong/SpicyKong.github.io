@@ -7,7 +7,6 @@ tags:
   - obsidian
   - test
   - asdf
-date: 2024-03-13T13:21:00
 ---
 
 날짜 있음, 옵시디언 스타일
