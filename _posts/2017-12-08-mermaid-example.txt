@@ -61,9 +61,3 @@ class Zebra{
     +run()
 }
 ```
-
-### 4. State diagram
-```mermaid!
-stateDiagram
-[*] --> Still
-Still --> [*]
