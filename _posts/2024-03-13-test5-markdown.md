@@ -3,10 +3,7 @@ layout: post
 title: test5
 subtitle: 
 categories: 
-tags:
-  [obsidian]
-  [test]
-  [asdf]
+tags: [obsidian, test, asdf]
 ---
 
 날짜 없음, 원래 스타일
