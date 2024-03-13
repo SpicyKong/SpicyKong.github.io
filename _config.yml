@@ -126,8 +126,8 @@ brand_color: "#217eff"
 
 # You can custom selection style
 selection:
-  color: "#ffD400"
-#   background_color: "yellow"
+#  color: "#ffD400"
+  background_color: "#ffD400"
 
 # Night/Dark mode
 # Default mode is "auto", "auto" is for auto nightshift
@@ -169,7 +169,7 @@ header_pages:
 # Banner default settings
 # These banner settings are for global banner default, but you can also
 # config it by the front matter for one specific post
-banner:
+#   banner:
 #   video: null             # Video banner source
 #   loop: true              # Video loop
 #   volume: 0               # Video volume (100% is 1.0)
@@ -184,9 +184,10 @@ banner:
 
 # Excerpt settings
 excerpt:
+  enabled: "true"
   default_image: /assets/images/default-image.png  # Default image when the image style is not none
   image_style: left          # Image layout style (It's value could be none, left, right, top, z, z-reverse)
-#   image_width: 38.2%      # Image default width
+  image_width: 18.2%      # Image default width
 #   image_height: 160px     # Image default height
 #   text_size: 350          # Words default size
 
