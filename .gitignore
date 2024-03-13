@@ -3,4 +3,6 @@
 .sass-cache
 _site
 Gemfile.lock
-*.txt
+.git
+.github
+.DS_Store
