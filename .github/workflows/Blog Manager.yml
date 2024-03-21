@@ -33,7 +33,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - name: Update all changes.
+    - name: Install packages
+      run: npm install -production
+    - name: Update all changes
       run: npm run update --if-present
 
   build_and_deploy:
