@@ -8,6 +8,7 @@ on:
 
 jobs:
   update:
+
     runs-on: ubuntu-latest
     env:
       FILE_PATH: ${{ secrets.FILE_PATH }}
@@ -15,6 +16,23 @@ jobs:
       GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
       NOTION_DB_ID: ${{ secrets.NOTION_DB_ID }}
       NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-    steps:
-    - run: echo Done! 🎉
+      
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
+    steps:
+    - name: Download Notion2Blog
+    - uses: actions/checkout@v3
+      with:
+        repository: SpicyKong/Notion2Blog
+        
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: Update all changes.
+    - run: npm run update --if-present
+    - run: echo Done! 🎉
