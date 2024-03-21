@@ -1,0 +1,38 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Blog Manager
+
+on:
+  workflow_dispatch
+
+jobs:
+  update:
+
+    runs-on: ubuntu-latest
+    env:
+      FILE_PATH: ${{ secrets.FILE_PATH }}
+      GIT_REPO_URL: ${{ secrets.GIT_REPO_URL }}
+      GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+      NOTION_DB_ID: ${{ secrets.NOTION_DB_ID }}
+      NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+      
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - name: Download Notion2Blog
+    - uses: actions/checkout@v3
+      with:
+        repository: SpicyKong/Notion2Blog
+        
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: Update all changes.
+    - run: npm run update --if-present
+    - run: echo Done! 🎉
