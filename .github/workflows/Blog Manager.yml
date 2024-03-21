@@ -8,58 +8,7 @@ on:
 
 jobs:
   update:
-
     runs-on: ubuntu-latest
-    env:
-      FILE_PATH: ${{ secrets.FILE_PATH }}
-      GIT_REPO_URL: ${{ secrets.GIT_REPO_URL }}
-      GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
-      NOTION_DB_ID: ${{ secrets.NOTION_DB_ID }}
-      NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-      
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
-    - name: Download Notion2Blog
-    - uses: actions/checkout@v3
-      with:
-        repository: SpicyKong/Notion2Blog
-        
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - name: Update all changes.
-    - run: npm run update --if-present
     - run: echo Done! 🎉
 
-  build_and_deploy:
-    runs-on: ubuntu-latest
-    needs: update
-    steps:
-      - uses: actions/checkout@v2
-
-      # Use GitHub Actions' cache to cache dependencies on servers
-      - uses: actions/cache@v1
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-
-      # Use GitHub Deploy Action to build and deploy to Github
-      - uses: jeffreytse/jekyll-deploy-action@master
-        with:
-          provider: 'github'
-          token: ${{ secrets.GITHUB_TOKEN }} # It's your Personal Access Token(PAT)
-          repository: ''             # Default is current repository
-          branch: 'gh-pages'         # Default is gh-pages for github provider
-          jekyll_src: './'           # Default is root directory
-          jekyll_cfg: '_config.yml'  # Default is _config.yml
-          jekyll_baseurl: ''  # Default is empty
-          cname: ''                  # Default is to not use a cname
-          actor: ''                  # Default is the GITHUB_ACTOR
