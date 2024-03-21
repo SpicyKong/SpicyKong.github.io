@@ -9,6 +9,12 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
+    env:
+      FILE_PATH: ${{ secrets.FILE_PATH }}
+      GIT_REPO_URL: ${{ secrets.GIT_REPO_URL }}
+      GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+      NOTION_DB_ID: ${{ secrets.NOTION_DB_ID }}
+      NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
     steps:
     - run: echo Done! 🎉
 
