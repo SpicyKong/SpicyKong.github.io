@@ -154,6 +154,10 @@ await notion.pages.update({page_id:page.id, properties: page.properties});
 
 작성중..
 
+이미지 테스트 
+![image](https://github.com/SpicyKong/SpicyKong.github.io/assets/37260182/9cfe8fd3-1fd0-4645-993e-f6826d65c1bd)
+![image](https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fbc55d29d-9bcf-4907-ad9e-d252dc4154e4%2F1e821e4f-5275-466c-901a-d7c43629f86f%2FUntitled.png?table=block&id=ab1764e8-bb3f-4ebd-b878-db6d31baad74&spaceId=bc55d29d-9bcf-4907-ad9e-d252dc4154e4&width=2000&userId=be64376a-e3a3-4867-9236-2c1bf4a6a1d1&cache=v2)
+![image](https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fbc55d29d-9bcf-4907-ad9e-d252dc4154e4%2F1e821e4f-5275-466c-901a-d7c43629f86f%2FUntitled.png?table=block&id=ab1764e8-bb3f-4ebd-b878-db6d31baad74&spaceId=bc55d29d-9bcf-4907-ad9e-d252dc4154e4&width=2000&userId=be64376a-e3a3-4867-9236-2c1bf4a6a1d1)
 
 테스트 할겸 미리 업로드
 
