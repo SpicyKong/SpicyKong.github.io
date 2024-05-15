@@ -4,14 +4,14 @@ title: Notion to Blog
 categories: Etc
 tags: [Project]
 ---
-1
-# 1. 블로그를 시작하다
+
+## 1. 블로그를 시작하다
 
 
 나는 불성실한 편이다. 꾸준히 무언가를 한다는 것은 나 같이 게으른 부류의 사람들에겐 크나큰 도전 이다. 그럼에도 이 도전을 시작하는 이유는 그동안 인터넷을 통해 공부를 한 것에 대한 나름의 감사라고 표현을 하는 편이 멋있겠지만, 그냥 어딘가에 나를 소개하고 싶었다. 앞으로 이 블로그를 통해 나의 관심사를 공유해 나갈 예정이다. 
 
 
-## 1.1. 번거로움
+### 1.1. 번거로움
 
 
 막상 깃허브 블로그를 구성하고 글을 작성하려고 보니 크게 두 가지 문제점이 눈에 띄였다.
@@ -34,7 +34,7 @@ tags: [Project]
 물론 velog나 Tistory와 같은 블로그 서비스를 이용하면 말끔히 해결된다. 그러나 깃허브 블로그를 구축해 관리하는 쪽이 더 멋져 보였다. 그래서 위 두 문제를 해결할 수 있는지 찾아본 뒤, 너무 귀찮아 진다면 넘어가려고 했었다.
 
 
-## 1.2. 개선할 수 있을까?
+### 1.2. 개선할 수 있을까?
 
 1. **글 쓰기 개선**
 
@@ -51,7 +51,7 @@ tags: [Project]
 노션만세
 
 
-# 2. 일단 결과물부터..
+## 2. 일단 결과물부터..
 
 
 지금 이 글은 다음과 같은 과정을 거쳐 내 블로그에 게시가 된다. 
@@ -99,7 +99,7 @@ tags: [Project]
 ![Untitled.png](https://spicykong.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fbc55d29d-9bcf-4907-ad9e-d252dc4154e4%2F809c79d3-8e0e-4bca-8ecf-b79c67e36639%2FUntitled.png?table=block&id=ec3a6095-245d-4742-a756-ddc85c45e67c&userId=&cache=v2)
 
 
-# 3. 개발 과정 공유
+## 3. 개발 과정
 
 
 먼저, [Notion2Blog](https://github.com/SpicyKong/Notion2Blog)는 아래 3가지 서비스를 이용해 만들었다. 각 서비스 별 역할은 다음과 같다.
@@ -108,7 +108,7 @@ tags: [Project]
 - [**Github API**](https://docs.github.com/en/rest?apiVersion=2022-11-28): 깃허브 리포지토리에 글 업로드(혹은 업데이트) 및 삭제
 - [**Github Action**](https://docs.github.com/ko/actions): 코드를 원하는 이벤트에 맞춰 동작 시킬 수 있음.
 
-## 3.1 Notion API
+### 3.1 Notion API
 
 
 노션 API를 처음 들었을 때는 이제 모든게 해결되었다고 생각했다. 하지만 기대와는 노션 API를 가지고 마크다운 파일을 얻기가 좀 번거롭다. 각 요소가 블럭 이라는 객체로 구성되어 있기 때문에 마크다운을 얻어오려면 처리해줘야 할 것이 많다. 
@@ -117,7 +117,7 @@ tags: [Project]
 다행히도 어떤 착한분께서 이미 이 귀찮음을 해결해 놓으셨다. [notion-to-md](https://github.com/souvikinator/notion-to-md) 라는 Node.js 라이브러리를 이용하면 손쉽게 원하는 페이지의 마크다운을 얻어올 수 있다. (찾아보니 [Python 오픈소스도 있다](https://github.com/echo724/notion2md)) 
 
 
-### 3.1.1. Notion API - 마크다운 페이지 얻기
+**3.1.1. Notion API - 마크다운 페이지 얻기**
 
 
 먼저, 페이지 아이디로 마크다운 텍스트를 얻어오는 방법을 살펴보자. 
@@ -135,7 +135,7 @@ console.log(n2m.pageToMarkdown(원하는 페이지 아이디).parent);
 ```
 
 
-### 3.1.2. Notion API - 원본 이미지 얻기
+**3.1.2. Notion API - 원본 이미지 얻기**
 
 
 문제는 위와 같이 이미지 블록에 있는 URI를 이용해 마크다운 텍스트를 긁어온 경우, 얼마 지나지 않아 주소가 만료되어 이미지를 볼 수 없게 된다. 따라서 우리는 원본 이미지에 접근을 해야 한다.
@@ -159,7 +159,7 @@ n2m.setCustomTransformer("image", async (block) => {
 ```
 
 
-### 3.1.3. Notion API - 페이지 정보 얻기
+**3.1.3. Notion API - 페이지 정보 얻기**
 
 
 다음은 업데이트 할 글을 모두 가져온 뒤, 각 글의 페이지 아이디를 얻는 예제이다. `Action` 이라는 속성이 `Publish` 라면 해당 글을 가져오는 코드이다. 글이 여러 개 일 수 있기 때문에 배열로 반환된다.
@@ -184,7 +184,7 @@ for (let page of res.results) {
 ```
 
 
-### 3.1.4. Notion API - 페이지 속성 얻기 & 업데이트 하기
+**3.1.4. Notion API - 페이지 속성 얻기 & 업데이트 하기**
 
 
 지킬에서는 모든 포스트에 다음과 같은 양식의 YAML 헤더 정보가 필요하다. 이 헤더를 통해 제목, 부제목, 태그, 날짜 등 다양한 속성을 지정할 수 있다. 
@@ -249,10 +249,10 @@ for (let page of res.results) {
 추가로 위 예제 코드에서 주석 이후의 코드는 속성을 업데이트하는 코드이다. 나의 경우 포스트가 깃허브에 성공적으로 게시된 경우 해당 페이지의  `Action` 속성이 `Nothing`으로 변경되게 만들었다.
 
 
-## 3.2. Github API
+### 3.2. Github API
 
 
-### 3.2.1. Github API - 새 글 Add
+**3.2.1. Github API - 새 글 Add**
 
 
 다음 예제 코드는 Github API를 이용해 원하는 저장소에 글을 업로드 하는 예제이다. 주의 할 점은 content를 base64로 인코딩해 전달해야 하는데, 그냥 인코딩하면 ASCII 범위를 벗어나는 문자는 깨질 수 있다. 그래서 아래와 같이 사용한다고 한다.
@@ -275,7 +275,7 @@ fetch(this.endpoint+ "유저이름/리포이름" + "/contents/" + "파일이름"
 ```
 
 
-### 3.2.2. Github API - 기존 글 Update
+**3.2.2. Github API - 기존 글 Update**
 
 
 기존 글의 내용을 변경하는 경우에는 추가로 body에 SHA 코드 라는 것을 전달하면 된다. 그 외에는 위의 코드와 동일하다.
@@ -299,7 +299,7 @@ fetch(this.endpoint+ "유저이름/리포이름" + "/contents/" + "파일이름"
 ```
 
 
-### 3.2.2. Github API - 기존 글 delete
+**3.2.2. Github API - 기존 글 delete**
 
 
 기존 글의 내용을 삭제하는 방식도 위와 비슷하다. Method만 `Delete`로 바꿔주면 된다. 
@@ -322,7 +322,7 @@ fetch(this.endpoint+ "유저이름/리포이름" + "/contents/" + "파일이름"
 ```
 
 
-### 3.2.2. Github API - SHA 코드 Get
+**3.2.2. Github API - SHA 코드 Get**
 
 
 아래 예제는 `sha`코드를 얻어오는 예제이다. (참고로, 그냥 실행시 결과가 이상할 수 있으니 비동기에 대한 이해를 한 후 수정해서 사용하면 된다.)
@@ -345,13 +345,13 @@ let res = fetch(this.endpoint+ "유저이름/리포이름" + "/contents/" + "파
 > 💡 **추가로, Github API 사용할 때, 요청 빈도가 너무 잦으면 conflict가 발생할 수 있다. 이 점을 주의하자.**
 
 
-## 3.3. Github Action
+### 3.3. Github Action
 
 
 Github Action을 이용하면 내가 원하는 코드를, 이벤트 발생 시, 실행 시킬 수 있다. 매 시간마다 실행이 되도록 할 수도 있는데, 나는 내가 깃허브 액션을 직접 실행하는 경우에만 실행되도록 세팅했다.
 
 
-### 3.3.1. Github Action - 시크릿 키 사용하기
+**3.3.1. Github Action - 시크릿 키 사용하기**
 
 
 API 키와 같은 민감한 정보들을 리포지토리에 공개하면 당연히 안된다. 깃허브 액션에서는 이러한 민감한 정보를 손수비게 관리해주는 `secrets`이라는 것이 있다. `리포지토리`- `Settings` - `Secrets and variables` - `Actions` 를 통해 접근할 수 있다. 
@@ -363,7 +363,7 @@ API 키와 같은 민감한 정보들을 리포지토리에 공개하면 당연�
 ![Untitled.png](https://spicykong.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fbc55d29d-9bcf-4907-ad9e-d252dc4154e4%2Fd83808ad-a988-4823-971d-6601b5ba3be4%2FUntitled.png?table=block&id=5c59b9c5-1e9f-4991-a850-343e10910383&userId=&cache=v2)
 
 
-### 3.3.2. Github Action - Workflow 만들기
+**3.3.2. Github Action - Workflow 만들기**
 
 
 워크플로우에 대한 자세한 구문은 다른 잘 설명된 자료가 많으니 그걸 이용하자.. 일단 나는 아래와 같이 작성했다. 주석을 보면 대략 흐름을 알 수는 있다.
@@ -411,7 +411,7 @@ jobs:
 ```
 
 
-# 4. 끝
+## 4. 끝
 
 
 끝
